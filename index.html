@@ -1,146 +1,183 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Menú Digital - Restaurante Valentina</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
-    <style>
-        /* Estilos base alineados a la arquitectura del proyecto */
-        body {
-            font-family: 'Montserrat', sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f8f9fa;
-            color: #333;
-        }
-        header {
-            background-color: #2c3e50;
-            color: white;
-            padding: 20px;
-            text-align: center;
-        }
-        .container {
-            width: 90%;
-            max-width: 800px;
-            margin: auto;
-            padding: 20px;
-        }
-        .lang-selector {
-            text-align: right;
-            margin-bottom: 20px;
-        }
-        .btn-lang {
-            padding: 8px 15px;
-            cursor: pointer;
-            border: 1px solid #2c3e50;
-            background: white;
-            border-radius: 5px;
-        }
-        .menu-item {
-            background: white;
-            border-radius: 10px;
-            padding: 15px;
-            margin-bottom: 15px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .item-info img {
-            width: 80px;
-            height: 80px;
-            border-radius: 8px;
-            object-fit: cover;
-            margin-right: 15px;
-        }
-        .price {
-            font-weight: bold;
-            color: #e67e22;
-            font-size: 1.2rem;
-        }
-    </style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Guía Gastronómica de Coyoacán</title>
+  <style>
+    :root {
+      --bg: #f6f0e8;
+      --paper: #fffaf5;
+      --ink: #2f241f;
+      --muted: #705e54;
+      --accent: #bf6a3d;
+      --accent-2: #d8b38a;
+      --line: #eadbcf;
+      --shadow: 0 16px 40px rgba(65, 44, 31, .10);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at top left, #fff7ef 0, #fff7ef 18%, transparent 19%) 0 0/22px 22px,
+        linear-gradient(180deg, #f8f3ec 0%, #f4ede5 100%);
+    }
+    .wrap { max-width: 1220px; margin: 0 auto; padding: 28px; }
+    .hero {
+      background: linear-gradient(135deg, rgba(191,106,61,.92), rgba(110,66,45,.90));
+      color: white;
+      border-radius: 30px;
+      padding: 56px 42px;
+      box-shadow: var(--shadow);
+      min-height: 320px;
+      display: flex;
+      align-items: end;
+    }
+    .hero-card {
+      max-width: 820px;
+      background: rgba(61, 34, 22, .28);
+      border: 1px solid rgba(255,255,255,.18);
+      padding: 24px 26px;
+      border-radius: 24px;
+    }
+    .eyebrow {
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      font-size: 12px;
+      opacity: .92;
+      margin-bottom: 12px;
+    }
+    h1 {
+      margin: 0 0 12px 0;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(34px, 5vw, 60px);
+      line-height: 1.02;
+    }
+    .hero p { margin: 0; max-width: 62ch; line-height: 1.6; font-size: 22px; }
+    .note {
+      margin-top: 18px;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      color: var(--muted);
+      padding: 14px 16px;
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+      font-size: 14px;
+    }
+    h2 {
+      margin: 40px 0 18px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 32px;
+    }
+    .sub { color: var(--muted); margin-top: -6px; margin-bottom: 24px; font-size: 16px; }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 22px;
+    }
+    .card {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+    }
+    .card-img {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+      background: #eadccf;
+    }
+    .card-body { padding: 18px 18px 20px; display: flex; flex-direction: column; gap: 12px; }
+    .card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .badge {
+      background: #fff;
+      border: 1px solid var(--line);
+      color: var(--ink);
+      border-radius: 999px;
+      padding: 8px 12px;
+      font-weight: 700;
+      font-size: 14px;
+    }
+    .mini { color: var(--muted); font-size: 14px; }
+    h3 { margin: 0; font-size: 22px; }
+    p { margin: 0; line-height: 1.6; }
+    .btn {
+      margin-top: 4px;
+      width: fit-content;
+      text-decoration: none;
+      color: white;
+      background: var(--accent);
+      padding: 11px 16px;
+      border-radius: 999px;
+      font-weight: 700;
+    }
+    .panel {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      box-shadow: var(--shadow);
+      padding: 22px;
+      margin-top: 24px;
+    }
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .chip {
+      text-decoration: none;
+      color: var(--ink);
+      background: #fff;
+      border: 1px solid var(--line);
+      padding: 10px 14px;
+      border-radius: 999px;
+      font-size: 14px;
+    }
+    .footer {
+      color: var(--muted);
+      font-size: 13px;
+      margin: 34px 0 12px;
+      text-align: center;
+    }
+    @media (max-width: 720px) {
+      .wrap { padding: 16px; }
+      .hero { padding: 28px 20px; min-height: 260px; }
+      .hero-card { padding: 18px; }
+      h2 { font-size: 28px; }
+      .hero p { font-size: 18px; }
+    }
+  </style>
 </head>
 <body>
+  <div class="wrap">
+    <section class="hero">
+      <div class="hero-card">
+        <div class="eyebrow">Recomendaciones de tu anfitrión</div>
+        <h1>Guía Gastronómica de Coyoacán</h1>
+        <p>Una selección boutique para huéspedes que quieren comer rico, caminar tranquilo y disfrutar Del Carmen y el Centro de Coyoacán con buen gusto.</p>
+      </div>
+    </section>
 
-<header>
-    <h1 id="rest-name">Restaurante Valentina</h1>
-    <p id="rest-tagline">Modernización Digital 2026</p>
-</header>
-
-<div class="container">
-    <div class="lang-selector">
-        <button class="btn-lang" onclick="changeLang('es')">Español</button>
-        <button class="btn-lang" onclick="changeLang('en')">English</button>
+    <div class="note">
+      Esta guía reúne opciones muy recomendables en Coyoacán para comer, tomar café, descubrir cantinas y taquerías clásicas, y completar el paseo con un plan cultural.
     </div>
 
-    <div id="menu-container">
-        <p>Cargando menú...</p>
-    </div>
-</div>
+    <h2>Selección curada para comer muy bien</h2>
+    <p class="sub">Pensada para viajeros: fácil de guardar, compartir por Airbnb o dejar impresa en el depa.</p>
 
-<script>
-    // Configuración inicial del proyecto 
-    const SHEET_ID = 'TU_ID_DE_GOOGLE_SHEETS_AQUI'; // Reemplazar con el ID real
-    const TAB_NAME = 'Hoja1';
-    const API_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json&sheet=${TAB_NAME}`;
-
-    let currentLang = 'es';
-    let menuData = [];
-
-    // Función para obtener datos de Google Sheets 
-    async function loadMenu() {
-        try {
-            const response = await fetch(API_URL);
-            const text = await response.text();
-            const data = JSON.parse(text.substr(47).slice(0, -2));
-            
-            // Mapeo de columnas (A=Nombre, B=Descripción, C=Precio, D=Imagen, E=Inglés...)
-            menuData = data.table.rows.map(row => ({
-                nombre: row.c[0]?.v,
-                desc: row.c[1]?.v,
-                precio: row.c[2]?.v,
-                img: row.c[3]?.v || 'https://via.placeholder.com/80',
-                nombreEn: row.c[4]?.v,
-                descEn: row.c[5]?.v
-            }));
-            
-            renderMenu();
-        } catch (error) {
-            console.error("Error cargando el menú:", error);
-            document.getElementById('menu-container').innerHTML = "<p>Error al conectar con la base de datos.</p>";
-        }
-    }
-
-    function renderMenu() {
-        const container = document.getElementById('menu-container');
-        container.innerHTML = '';
-
-        menuData.forEach(item => {
-            const div = document.createElement('div');
-            div.className = 'menu-item';
-            div.innerHTML = `
-                <div class="item-info" style="display: flex; align-items: center;">
-                    <img src="${item.img}" alt="Platillo">
-                    <div>
-                        <strong>${currentLang === 'es' ? item.nombre : item.nombreEn}</strong><br>
-                        <small>${currentLang === 'es' ? item.desc : item.descEn}</small>
-                    </div>
-                </div>
-                <div class="price">$${item.precio}</div>
-            `;
-            container.appendChild(div);
-        });
-    }
-
-    function changeLang(lang) {
-        currentLang = lang;
-        renderMenu();
-    }
-
-    // Iniciar carga [cite: 60]
-    loadMenu();
-</script>
-
+    <section class="grid">
+      </section>
+  </div>
 </body>
 </html>
